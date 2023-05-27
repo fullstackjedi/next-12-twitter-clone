@@ -1,4 +1,8 @@
-import { AuthModal } from '@twitter/components/AuthModal'
+'use client'
+
+import { Box, Button, Container, Flex } from '@chakra-ui/react'
+import { AuthModal } from '@twitter/components/auth/AuthModal'
+import { NotLoggedIn } from '@twitter/components/auth/NotLoggedIn'
 import { Tweet } from '@twitter/components/Tweet'
 
 // import fs from 'fs'
@@ -8,34 +12,27 @@ export default function Home() {
   // ngnbkjngbjkg
 
   return (
-    <main>
-      <div className="flex justify-between">
-        <div className="w-[17rem]">Side Menu</div>
+    <Box as="main" w="full" h="100vh" bg="black" color="white">
+      <Container maxW="100rem" h="full">
+        <Flex h="full">
+          <Box w="7rem"></Box>
 
-        <div className="flex-1">
-          <Tweet />
-          <Tweet />
-          <Tweet />
-          <Tweet />
-        </div>
+          <Box
+            flex="1"
+            borderLeft="1px solid #ffffff50"
+            borderRight="1px solid #ffffff50"
+          >
+            <Tweet />
+            <Tweet />
+            <Tweet />
+            <Tweet />
+          </Box>
 
-        <div className="w-[24rem]">
-          <div>
-            <h3 className="font-bold">New to Twitter?</h3>
-            <p>Sign up to get a personalised feed</p>
-          </div>
+          <NotLoggedIn />
+        </Flex>
+      </Container>
 
-          <div>
-            <button>Login</button>
-          </div>
-
-          <div>
-            <button>Create Account</button>
-          </div>
-        </div>
-      </div>
-
-      <AuthModal />
-    </main>
+      {/* <AuthModal /> */}
+    </Box>
   )
 }
