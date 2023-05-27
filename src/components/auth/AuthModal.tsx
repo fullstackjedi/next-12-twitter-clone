@@ -1,18 +1,18 @@
 'use client'
 
-import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import axios from 'axios'
+import React from 'react'
 import {
   Box,
-  Button,
   Center,
   CloseButton,
-  Flex,
-  Heading,
-  Input,
-  VStack,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
 } from '@chakra-ui/react'
+import { LoginForm } from './LoginForm'
+import { SignupForm } from './SignupForm'
 
 type Props = {
   isOpen: boolean
@@ -20,19 +20,6 @@ type Props = {
 }
 
 export const AuthModal = ({ isOpen, toggle }: Props) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm()
-
-  const signup = async (data: any) => {
-    await axios.post('/api/auth/signup', data)
-    reset()
-    alert('Signed up successfully')
-  }
-
   return (
     <Center
       display={isOpen ? 'flex' : 'none'}
@@ -48,31 +35,23 @@ export const AuthModal = ({ isOpen, toggle }: Props) => {
           <CloseButton onClick={() => toggle(false)} />
         </Box>
 
-        <div className="flex flex-col">
-          <Heading>Signup to twitter</Heading>
+        <Tabs>
+          <TabList>
+            <Tab>Login</Tab>
+            <Tab>Signup</Tab>
+          </TabList>
 
-          <VStack spacing="1.5rem" mt="2rem">
-            <Input {...register('name')} type="text" placeholder="Name" />
-            <Input {...register('email')} type="text" placeholder="Email" />
-            <Input
-              {...register('password')}
-              type="password"
-              placeholder="......"
-            />
-          </VStack>
-
-          <Button
-            size="sm"
-            bg="#fff"
-            color="#000"
-            w="100%"
-            rounded="2rem"
-            mt="3rem"
-            onClick={handleSubmit(signup)}
-          >
-            Log in
-          </Button>
-        </div>
+          <TabPanels pt="2rem">
+            {/* Login */}
+            <TabPanel>
+              <LoginForm onComplete={() => toggle(false)} />
+            </TabPanel>
+            {/* Signup */}
+            <TabPanel>
+              <SignupForm />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
       </Box>
     </Center>
   )

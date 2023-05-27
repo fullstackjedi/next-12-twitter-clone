@@ -1,7 +1,6 @@
 export const input = {
   baseStyle: {
     field: {
-      fontFamily: 'medium',
       fontSize: '1.3rem !important',
       py: '1.4rem',
       px: '1.4rem',
@@ -11,33 +10,32 @@ export const input = {
       bg: 'transparent',
       _placeholder: {
         color: 'brand.mutedText',
-        fontFamily: 'medium'
       },
       _invalid: {
-        borderColor: 'brand.retroRed'
+        borderColor: 'brand.retroRed',
       },
       _focus: {
-        bg: '#ffffff10'
-      }
-    }
+        bg: '#ffffff10',
+      },
+    },
   },
   sizes: {
     lg: {},
     md: {},
     sm: {
       py: '1.4rem',
-      px: '1.2rem'
-    }
+      px: '1.2rem',
+    },
   },
   variants: {
     message: {
       border: 'none',
-      height: '100%'
-    }
+      height: '100%',
+    },
   },
   defaultProps: {
     // This is needed to clear the default chakra input styles
     variant: null,
-    size: null
-  }
+    size: null,
+  },
 }
